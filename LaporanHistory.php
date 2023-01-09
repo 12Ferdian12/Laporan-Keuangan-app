@@ -16,16 +16,16 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="index.html">Pengeluaran & Pemasukan</a>
+                <a class="nav-link " aria-current="page" href="Pengeluaran&Pemasukan.php">Pengeluaran & Pemasukan</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="LaporanCategory.html">Kategori </a>
+                <a class="nav-link" href="LaporanCategory.php">Kategori </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="LaporanReport.html">Report</a>
+                <a class="nav-link" href="LaporanReport.php">Report</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="LaporanHistory.html">History</a>
+                <a class="nav-link active" href="LaporanHistory.php">History</a>
               </li>
             </ul>
           </div>
