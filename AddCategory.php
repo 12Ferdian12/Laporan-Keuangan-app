@@ -32,10 +32,10 @@
         </div>
       </nav>
       <main class="container pt-3">
-        <form>
+        <form method="post" action="./php/funcAddCategory.php">
             <div class="mb-3">
               <label for="InputCategoryName" class="form-label">Category Name</label>
-              <input type="text" class="form-control" id="InputCategoryName" placeholder="Category..." required>
+              <input type="text" name="CategoryName" class="form-control" id="InputCategoryName" placeholder="Category..." required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>

@@ -1,5 +1,6 @@
 <?php
-  require './php/database.php'
+  include './php/database.php'
+  
   
 ?>
 <!doctype html>
@@ -9,9 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laporan Category</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
   </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+  <body >
+    <nav class="navbar navbar-expand-lg bg-body-tertiary background-color-blue">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Laporan Keuangan </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +38,7 @@
         </div>
       </nav>
       <main class="container pt-3"> 
-         <a href="AddCategory.html" type="button" class="btn btn-success">ADD</a>
+         <a href="AddCategory.php" type="button" class="btn btn-success">ADD</a>
       <table class="table">
         <thead>
           <tr>
@@ -46,15 +48,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>
-                <button type="button" class="btn btn-warning">EDIT</button>
-                <button type="button" class="btn btn-danger">DELETE</button>
-            </td>
-          </tr>
+        <?php 
+		include './php/database.php';
+		$no = 1;
+		$data = mysqli_query($conn,"select * from kategori");
+		while($d = mysqli_fetch_array($data)){
+			?>
+			<tr>
+				<td><?php echo $d['KategoriID']; ?></td>
+				<td><?php echo $d['namaKategori']; ?></td>
+				<td>
+					<a href="edit.php?id=<?php echo $d['KategoriID']; ?>">EDIT</a>
+					<a href="hapus.php?id=<?php echo $d['KategoriID']; ?>">HAPUS</a>
+				</td>
+			</tr>
+			<?php 
+		}
+		?>
         </tbody>
       </table>
      </main>
