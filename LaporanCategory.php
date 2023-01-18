@@ -55,11 +55,11 @@
 		while($d = mysqli_fetch_array($data)){
 			?>
 			<tr>
-				<td><?php echo $d['KategoriID']; ?></td>
+				<td><?php echo $no++; ?></td>
 				<td><?php echo $d['namaKategori']; ?></td>
 				<td>
-					<a href="edit.php?id=<?php echo $d['KategoriID']; ?>">EDIT</a>
-					<a href="hapus.php?id=<?php echo $d['KategoriID']; ?>">HAPUS</a>
+					<a href="EditCategory.php?id=<?php echo $d['KategoriID']; ?>" class="btn btn-warning">EDIT</a>
+					<a href="./php/funcDeleteCategory.php?id=<?php echo $d['KategoriID']; ?>" class="btn btn-danger">HAPUS</a>
 				</td>
 			</tr>
 			<?php 
