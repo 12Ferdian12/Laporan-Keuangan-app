@@ -38,37 +38,37 @@
         </div>
       </nav>
       <main class="container pt-3"> 
-         <a href="AddCategory.php" type="button" class="btn btn-success">ADD</a>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">NAME</th>
-            <th scope="col">ACTION</th>
-          </tr>
-        </thead>
-        <tbody>
-        <?php 
-		include './php/database.php';
-		$no = 1;
-		$data = mysqli_query($conn,"select * from kategori");
-		while($d = mysqli_fetch_array($data)){
-			?>
-			<tr>
-				<td><?php echo $no++; ?></td>
-				<td><?php echo $d['namaKategori']; ?></td>
-				<td>
-					<a href="EditCategory.php?id=<?php echo $d['KategoriID']; ?>" class="btn btn-warning">EDIT</a>
-					<a href="./php/funcDeleteCategory.php?id=<?php echo $d['KategoriID']; ?>" class="btn btn-danger">HAPUS</a>
-				</td>
-			</tr>
-			<?php 
-		}
-		?>
-        </tbody>
-      </table>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          ADD
+        </button>
+        <div id="dataKategori"></div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
      </main>
+     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+    <script>
+      getDataKategori();
+    </script>
   </body>
 </html>
