@@ -11,6 +11,8 @@ function getDataKategori(){
     }
 }
 
+
+
 function inputDataTableKategori(data){
     if(data.length === 0){
         document.getElementById("dataKategori").innerHTML = "<H1>" + errorNotFound + '</H1>'
