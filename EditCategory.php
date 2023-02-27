@@ -1,37 +1,3 @@
-<?php
-// include database connection file
-include_once("./php/database.php");
- 
-// Check if form is submitted for user update, then redirect to homepage after update
-if(isset($_POST['update']))
-{	
-    $id = $_POST['id'];
-    
-    $name=$_POST['name'];
-    $mobile=$_POST['mobile'];
-    $email=$_POST['email'];
-        
-    // update user data
-    $result = mysqli_query($conn, "UPDATE users SET name='$name',email='$email',mobile='$mobile' WHERE id=$id");
-    
-    // Redirect to homepage to display updated user in list
-    header("Location: LaporanCategory.php");
-}
-?>
-<?php
-// Display selected user data based on id
-// Getting id from url
-$id = $_GET['id'];
- 
-// Fetch user data based on id
-$result = mysqli_query($conn, "SELECT * FROM kategori WHERE KategoriID=$id");
- 
-while($kategori_data = mysqli_fetch_array($result))
-{
-    $kategori_ID = $kategori_data['KategoriID'];
-    $nama_kategori = $kategori_data['namaKategori'];
-}
-?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -70,14 +36,19 @@ while($kategori_data = mysqli_fetch_array($result))
             <div class="mb-3">
               <label for="InputCategoryName" class="form-label">Category Name</label>
               <input type="text" name="CategoryName" class="form-control" 
-                id="InputCategoryName" placeholder="Category..." required
-                value=<?php echo $nama_kategori;?>>
-                <input type="hidden" name="id" value=<?php echo $_GET['id'];?>>
+                id="InputCategoryName" placeholder="Category..." required >
+                <input type="hidden" name="id">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script>
+      var id = getUrlVars("id")
+      document.getElementById("InputCategoryName").value = id
+      document.getElementById("id").value = id
+    </script>
+    
   </body>
 </html>

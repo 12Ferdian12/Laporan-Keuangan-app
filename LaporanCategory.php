@@ -123,6 +123,19 @@
 
       }
 
+      function onDelete(KategoriID){
+            var data = {
+                'KategoriID': KategoriID
+            }
+
+            xhr.open('POST', '/JsTrain/Laporan-Keuangan-app/php/Delete-category.php', true);
+            xhr.send(JSON.stringify(data));
+
+            xhr.onload = function () {
+              getDataKategori();
+            };
+        }
+
     </script>
   </body>
 </html>
