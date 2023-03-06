@@ -32,22 +32,53 @@
         </div>
       </nav>
       <main class="container pt-3">
-        <form method="post" >
-            <div class="mb-3">
-              <label for="InputCategoryName" class="form-label">Category Name</label>
-              <input type="text" name="CategoryName" class="form-control" 
-                id="InputCategoryName" placeholder="Category..." required >
-                <input type="hidden" name="id">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+        <div class="mb-3">
+          <label for="InputCategoryName" class="form-label">Category Name</label>
+          <input type="text" name="CategoryName" class="form-control" 
+            id="InputCategoryName" placeholder="Category..." required >
+            <input type="hidden" name="id" id="id">
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="updateKategori()">Submit</button>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script type="text/javascript" src="script.js"></script>
     <script>
       var id = getUrlVars("id")
-      document.getElementById("InputCategoryName").value = id
-      document.getElementById("id").value = id
+      getDataCategoryByID(id)
+
+      function getDataCategoryByID(id){
+        var data = {
+            'KategoriID' : id
+        }
+
+        xhr.open('POST', '/JsTrain/Laporan-Keuangan-app/php/get-categoryByID.php', true);
+        xhr.send(JSON.stringify(data));
+
+        xhr.onload = function () {
+          let data = JSON.parse(xhr.response);
+          document.getElementById("InputCategoryName").value = data['namaKategori']
+          document.getElementById("id").value = data['KategoriID']
+        };
+      }
+      function updateKategori(){
+        var nama_kategori = document.getElementById("InputCategoryName").value
+        var kategoriID = document.getElementById("id").value
+
+        var kategori = {
+          'namaKategori' : nama_kategori, 
+          kategoriID
+        }
+
+        xhr.open('POST', '/JsTrain/Laporan-Keuangan-app/php/Update-kategori.php', true);
+        xhr.send(JSON.stringify(kategori));
+
+
+        xhr.onload = function () {
+          window.location.href = "LaporanCategory.php";
+        };
+
+      }
+
     </script>
     
   </body>

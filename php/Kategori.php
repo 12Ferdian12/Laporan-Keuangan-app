@@ -56,18 +56,17 @@
         return ["message" => "Category deleted successfully"];
     }
 
-    // function updateUserById($conn, $data){
-    //     $id = mysqli_real_escape_string($conn,$data["id"]);
-    //     $name = mysqli_real_escape_string($conn,$data["name"]);
-    //     $phoneNumber = mysqli_real_escape_string($conn, $data["phoneNumber"]);
-    //     $sql = "UPDATE user SET Name = '$name', PhoneNumber = '$phoneNumber' WHERE ID = $id";
-    //     if(!mysqli_query($conn, $sql)){
-    //         http_response_code(500);
-    //         echo json_encode(["error" => "Failed to update the user: ".mysqli_error($conn)]);
-    //         exit;
-    //     }
-    //     $data["id"] = mysqli_insert_id($conn);
-    //     return $data;
-    // }
+    function updateKategoriById($conn, $kategori){
+        $id = mysqli_real_escape_string($conn,$kategori["kategoriID"]);
+        $name = mysqli_real_escape_string($conn,$kategori["namaKategori"]);
+        $sql = "UPDATE kategori SET namaKategori = '$name' WHERE KategoriID = $id";
+        if(!mysqli_query($conn, $sql)){
+            http_response_code(500);
+            echo json_encode(["error" => "Failed to update the kategori: ".mysqli_error($conn)]);
+            exit;
+        }
+        $data["KategoriID"] = mysqli_insert_id($conn);
+        return $data;
+    }
 
 ?>

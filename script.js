@@ -26,7 +26,7 @@ function inputDataTableKategori(data){
             var index = i + 1
             containerData += '<td>' + index + '</td>' + '<td>' + data[i]['namaKategori'] + '</td>'
             var dataString = JSON.stringify(data[i]);
-            containerData += "<td><button href='EditCategory.php?id="+data[i]['KategoriID']+"' class='btn btn-warning'>Edit</button> <button onClick='onDelete("+data[i]["KategoriID"]+")' class='btn btn-danger'>Delete</button></td>";
+            containerData += "<td><a href='EditCategory.php?id="+data[i]['KategoriID']+"' class='btn btn-warning'>Edit</a> <button onClick='onDelete("+data[i]["KategoriID"]+")' class='btn btn-danger'>Delete</button></td>";
         containerData += '</tr>'
     }
     containerData += '</tbody></table>'
