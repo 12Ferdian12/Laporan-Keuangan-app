@@ -32,7 +32,6 @@
         </div>
       </nav>
       <main class="container">
-        <form>
           <div class="mb-3">
             <label  class="form-label">Judul</label>
             <input type="text" class="form-control" id="InputJudul">
@@ -43,7 +42,6 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Type</label>
-            <input type="text" class="form-control" id="InputType">
             <select class="form-select" aria-label="Default select example" id="InputType">
               <option value="Pengeluaran">Pengeluaran</option>
               <option value="Pemasukan">Pemasukan</option>
@@ -54,15 +52,76 @@
             <label class="form-label">Category</label>
             <select class="form-select" aria-label="Default select example" id="InputCategory">
               <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
             </select>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+          <div class="mb-3">
+            <label class="form-label">Tanggal</label>
+            <input type="date" class="form-control" id="InputTanggal">
+          </div>
+          
+          <button class="btn btn-primary"  onclick="submitTransaksi()">Submit</button>
       </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+    <script>
+        getCategory()
+
+        document.getElementById("InputTanggal").value = new Date().toISOString().substring(0, 10);
+
+        function getCategory(){
+
+          let InputCategory = ''
+          
+          xhr.open('GET', '/JsTrain/Laporan-Keuangan-app/php/get-kategori.php', true);
+          xhr.send();
+          
+          xhr.onload = function () {
+            let data = JSON.parse(xhr.response);
+            console.log(data)
+            for(var i = 0; i < data.length; i++){
+              InputCategory += '<option value="' + data[i]["KategoriID"] + '">' + data[i]["namaKategori"] + '</option>'
+            }
+            document.getElementById("InputCategory").innerHTML = InputCategory
+
+          };
+        }
+        function submitTransaksi(){
+
+          let Judul = document.getElementById("InputJudul").value;
+          let Nominal = document.getElementById("InputNominal").value;
+          let Type = document.getElementById("InputType").value;
+          let Category = document.getElementById("InputCategory").value;
+          let Tanggal = document.getElementById("InputTanggal").value;
+
+          if(Judul.length < 3){
+            alert("Judul harus lebih dari 3 digit");
+            document.getElementById("InputJudul").style = "border:1px solid red"
+            return;
+          }
+
+          if(Nominal < 50000){
+          alert("Nominal harus lebih dari Rp 50.000");
+            document.getElementById("InputNominal").style = "border:1px solid red"
+            return;
+          }
+
+          var data = {
+            "Judul": Judul,
+            "Nominal": Nominal,
+            "Type": Type,
+            "KategoriID": Category,
+            "Tanggal": Tanggal
+          }
+
+          xhr.open('POST', '/JsTrain/Laporan-Keuangan-app/php/Add-transaksi.php', true);
+          xhr.send(JSON.stringify(data));
+
+          document.getElementById("InputJudul").value = "";
+          document.getElementById("InputNominal").value = "0";
+
+        }
+      
+    </script>
+    
   </body>
 </html>
