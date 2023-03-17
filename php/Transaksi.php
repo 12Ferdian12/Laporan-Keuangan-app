@@ -18,21 +18,21 @@
         return $data;
     }
 
-//     function getKategori($conn){
-//         $sql = "SELECT * FROM kategori;";
-//         $result = mysqli_query($conn, $sql);
-//         if(!$result){
-//             http_response_code(500);
-//             echo json_encode(["error" => "Failed to get the ketegori: ".mysqli_error($conn)]);
-//             exit;
-//         }
-//         $data = array();
-//         while ($row = mysqli_fetch_assoc($result)) {
-//             $data[] = $row;
-//         }
+    function getTransaksi($conn){
+        $sql = "SELECT T.*, K.namaKategori FROM transaksi T INNER JOIN kategori K ON T.KategoriID = K.KategoriID ORDER BY T.Tanggal DESC";
+        $result = mysqli_query($conn, $sql);
+        if(!$result){
+            http_response_code(500);
+            echo json_encode(["error" => "Failed to get the Transaksi: ".mysqli_error($conn)]);
+            exit;
+        }
+        $data = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row;
+        }
 
-//         return $data;
-//     }
+        return $data;
+    }
 
 //     function getKategoriByID($conn, $KategoriID){
 //         $sql = "SELECT * FROM kategori WHERE KategoriID = $KategoriID;";
