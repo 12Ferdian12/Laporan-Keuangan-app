@@ -103,8 +103,14 @@ function inputDataTableTransaksi(data){
             containerData += '<td>' + data[i]['Tanggal'] + '</td>'
             containerData += '<td>' + data[i]['Judul'] + '</td>' 
             containerData += '<td>' + data[i]['namaKategori'] + '</td>'
-            containerData += '<td>' + data[i]['Jumlah'] + '</td>'
-            containerData += "<td><a href='EditCategory.php?id="+data[i]['TransaksiID']+"' class='btn btn-warning'>Edit</a> <button onClick='onDelete("+data[i]["TransaksiID"]+")' class='btn btn-danger'>Delete</button></td>";
+            if (data[i]["Tipe"] == "Pengeluaran"){
+                 containerData += '<td style="color:red">-' + new Intl.NumberFormat("id-ID", {style: "currency", currency: "IDR"}).format(data[i]['Jumlah'])  + '</td>'
+            }
+            else{
+                containerData += '<td style="color:green">+' + new Intl.NumberFormat("id-ID", {style: "currency", currency: "IDR"}).format(data[i]['Jumlah'])  + '</td>'
+            }
+           
+            containerData += "<td><button onClick='onDelete("+data[i]["TransaksiID"]+")' class='btn btn-danger'>Delete</button></td>";
         containerData += '</tr>'
     }
     containerData += '</tbody></table>'

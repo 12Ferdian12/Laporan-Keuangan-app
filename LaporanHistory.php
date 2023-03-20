@@ -40,6 +40,20 @@
     <script  type="text/javascript" src="script.js"></script>
     <script>
       getDataTransaksi();
+
+      function onDelete(TransaksiID){
+            var data = {
+                'TransaksiID': TransaksiID
+            }
+
+            xhr.open('POST', '/JsTrain/Laporan-Keuangan-app/php/Delete-transaksi.php', true);
+            xhr.send(JSON.stringify(data));
+
+            xhr.onload = function () {
+              getDataTransaksi();
+            };
+        }
+
     </script>
   </body>
 </html>

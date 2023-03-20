@@ -51,27 +51,36 @@
 //     }
 
     
-//     function deleteCategoryById($conn, $KategoriID){
-//         $sql = "DELETE FROM kategori WHERE KategoriID = $KategoriID;";
-//         if(!mysqli_query($conn, $sql)){
-//             http_response_code(500);
-//             echo json_encode(["error" => "Failed to delete the category: ".mysqli_error($conn)]);
-//             exit;
-//         }
-//         return ["message" => "Category deleted successfully"];
-//     }
+    function deleteTransaksiById($conn, $TransaksiID){
+        $sql = "DELETE FROM transaksi WHERE TransaksiID = $TransaksiID;";
+        if(!mysqli_query($conn, $sql)){
+            http_response_code(500);
+            echo json_encode(["error" => "Failed to delete the Transaksi: ".mysqli_error($conn)]);
+            exit;
+        }
+        return ["message" => "Transaksi deleted successfully"];
+    }
+    function getSpending($conn){
+        $sql = 'SELECT SUM(Jumlah) FROM `transaksi`WHERE Tipe = "Pengeluaran"';
+        $result = mysqli_query($conn, $sql);
+        if(!$result){
+            http_response_code(500);
+            echo json_encode(["error" => "Failed to get the Spending: ".mysqli_error($conn)]);
+            exit;
+        }
 
-//     function updateKategoriById($conn, $kategori){
-//         $id = mysqli_real_escape_string($conn,$kategori["kategoriID"]);
-//         $name = mysqli_real_escape_string($conn,$kategori["namaKategori"]);
-//         $sql = "UPDATE kategori SET namaKategori = '$name' WHERE KategoriID = $id";
-//         if(!mysqli_query($conn, $sql)){
-//             http_response_code(500);
-//             echo json_encode(["error" => "Failed to update the kategori: ".mysqli_error($conn)]);
-//             exit;
-//         }
-//         $data["KategoriID"] = mysqli_insert_id($conn);
-//         return $data;
-//     }
+        return mysqli_fetch_assoc($result)["SUM(Jumlah)"];
+    }
+    function getIncome($conn){
+        $sql = 'SELECT SUM(Jumlah) FROM `transaksi`WHERE Tipe = "Pemasukan"';
+        $result = mysqli_query($conn, $sql);
+        if(!$result){
+            http_response_code(500);
+            echo json_encode(["error" => "Failed to get the Pemasukan: ".mysqli_error($conn)]);
+            exit;
+        }
 
+        return mysqli_fetch_assoc($result)["SUM(Jumlah)"];
+    }
+    
 ?>
