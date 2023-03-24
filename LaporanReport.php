@@ -31,8 +31,52 @@
           </div>
         </div>
       </nav>
-      <main> </main>
+      <main> 
+        <div class="container text-center">
+          <div class="row g-2">
+            <div class="col-12">
+              <div class="border border-dark border-3">
+                <div class="row g-2">
+                  <div class="col-12">
+                    <div class="p-3 text-start">Balance</div>
+                  </div>
+                  <div class="col-12">
+                    <div class="h2 p-3 text-end" id="BalanceValue" >Rp.150.000</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="border border-dark border-3">
+                <div class="row g-2">
+                  <div class="col-12">
+                    <div class="p-3 text-start">Income</div>
+                  </div>
+                  <div class="col-12">
+                    <div class="h2 p-3 text-end" id="IncomeValue">Rp.150.000</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="border border-dark border-3">
+                <div class="row g-2">
+                  <div class="col-12">
+                    <div class="p-3 text-start">Spending</div>
+                  </div>
+                  <div class="col-12">
+                    <div class="h2 p-3 text-end" id="SpendingValue">Rp.150.000</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script>
+      getDataReport()
+     </script>
   </body>
 </html>

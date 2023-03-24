@@ -116,3 +116,15 @@ function inputDataTableTransaksi(data){
     containerData += '</tbody></table>'
     document.getElementById("dataTransaksi").innerHTML = containerData;
 }
+
+function getDataReport(){
+    xhr.open('GET','/JsTrain/Laporan-Keuangan-app/php/get-report.php',true);
+    xhr.send();
+
+    xhr.onload = function(){
+        let data = JSON.parse(xhr.response);
+        document.getElementById("BalanceValue").innerText = new Intl.NumberFormat("id-ID", {style: "currency", currency: "IDR"}).format(data["Balance"] )
+        document.getElementById("IncomeValue").innerText = new Intl.NumberFormat("id-ID", {style: "currency", currency: "IDR"}).format(data["Income"] )
+        document.getElementById("SpendingValue").innerText = new Intl.NumberFormat("id-ID", {style: "currency", currency: "IDR"}).format(data["Spending"] )
+    }
+}
