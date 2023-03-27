@@ -19,7 +19,7 @@ function inputDataTableKategori(data){
         return;
     }
 
-    var containerData = '<table class="table"><thead><tr><th scope="col">ID</th><th scope="col">NAME</th><th scope="col">ACTION</th></tr></thead><tbody>'
+    var containerData = '<table id="example2" class="display" style="width:100%"><thead><tr><th scope="col">ID</th><th scope="col">NAME</th><th scope="col">ACTION</th></tr></thead><tbody>'
     
     for(var i = 0; i < data.length; i++){
         containerData += '<tr>'
@@ -81,7 +81,7 @@ function inputDataTableTransaksi(data){
     }
 
     var containerData = `
-        <table class="table">
+        <table id="tableTransaksi" class="display" style="width:100%">
           <thead>
             <tr>
               <th scope="col">#</th>

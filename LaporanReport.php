@@ -33,6 +33,20 @@
       </nav>
       <main> 
         <div class="container text-center">
+          <div class="row my-5">
+            <div class="col-5">
+              <input type="date" class="form-control" id="InputTanggalFrom">
+            </div>
+            <div class="col-2">
+              to
+            </div>
+            <div class="col-5">
+              <input type="date" class="form-control" id="InputTanggalTo">
+            </div>
+            <div class="col-12 mt-2">
+              <button type="button" class="btn btn-primary" id="ButtonInput">Cari</button>
+            </div>
+          </div>
           <div class="row g-2">
             <div class="col-12">
               <div class="border border-dark border-3">
@@ -77,6 +91,6 @@
     <script type="text/javascript" src="script.js"></script>
     <script>
       getDataReport()
-     </script>
+    </script>
   </body>
 </html>
